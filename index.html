@@ -382,6 +382,60 @@
             visibility: visible;
             opacity: 1;
         }
+
+        /* Portfolio Styles */
+        .portfolio-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+        
+        .portfolio-item {
+            background: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 3px solid var(--secondary);
+        }
+        
+        .portfolio-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        .portfolio-description {
+            padding: 15px;
+        }
+        
+        .portfolio-description h3 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+        
+        .portfolio-description p {
+            margin-bottom: 0;
+            color: var(--dark-gray);
+            font-size: 0.9rem;
+        }
     </style>
 </head>
 <body>
@@ -506,6 +560,95 @@
                     <li>Developed asset management systems for VFX production</li>
                     <li>Optimized workflows for Maya, Houdini, and Nuke pipelines</li>
                 </ul>
+            </div>
+        </section>
+
+        <section class="section" id="portfolio">
+            <h2>Project Portfolio</h2>
+            <div class="card">
+                <p>Below are some of the projects where I worked as Pipeline Head. For some projects, the pipeline tools came from clients which I maintained and provided training to artists for smooth workflow and on-time project delivery. For others, I built the pipeline from scratch for Maya software to ensure smooth workflow from asset to compositing.</p>
+            </div>
+            
+            <div class="portfolio-container">
+                <div class="portfolio-item">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/dwtSy4tsXj0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="portfolio-description">
+                        <h3>Bed Time Diffenderz</h3>
+                        <p>Custom Pipeline management and workflow optimization</p>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/y7NGAddJ27E" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="portfolio-description">
+                        <h3>Cody Time(CocoMelon)</h3>
+                        <p>Custom Maya Pipeline Development for Asset, Shots and Lighting.</p>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/GyKeT16zOdk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="portfolio-description">
+                        <h3>DORA</h3>
+                        <p>Custom Maya pipeline Development</p>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/aAaSqRCr6sk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="portfolio-description">
+                        <h3>FriendZSpace</h3>
+                        <p>Client Given Shotgrid Tools Training and Documentation.Shot Publish and Quality Check</p>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/iT1eUIADY84?list=PLNvhiaSh0IpAr41MGXztPj_xzw8lTdpMx" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="portfolio-description">
+                        <h3>Blippi Wonders</h3>
+                        <p>Client given Pipeline tools training and documentation</p>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/CcuodcWK2-s" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="portfolio-description">
+                        <h3>100% WOLF</h3>
+                        <p>Mighty Animation Shotgrid Developed Tool maintained and Project Delivered</p>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/ACqrIPcUjqI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="portfolio-description">
+                        <h3>Blue's Clue and You</h3>
+                        <p>Custom scripting for workflow automation</p>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/AxT89ill-9g" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="portfolio-description">
+                        <h3>Lucas The Spider</h3>
+                        <p>Maintain Client Provided Tools and Give training to Artist.</p>
+                    </div>
+                </div>
             </div>
         </section>
 
