@@ -1,744 +1,641 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shaikh Rizuan Alli | CGI Pipeline & IT Systems Professional</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root {
-            --primary: #2563eb;
-            --primary-dark: #1d4ed8;
-            --secondary: #f59e0b;
-            --dark: #1e293b;
-            --light: #f8fafc;
-            --gray: #94a3b8;
-            --dark-gray: #64748b;
-            --card-bg: #ffffff;
-        }
-        
-        body {
-            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: var(--dark);
-            background-color: #f1f5f9;
-            margin: 0;
-            padding: 0;
-        }
-        
-        @supports (font-variation-settings: normal) {
-            body { font-family: 'Inter var', sans-serif; }
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        
-        header {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: white;
-            padding: 40px 0;
-            text-align: center;
-            border-radius: 0 0 20px 20px;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-            margin-bottom: 40px;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        header::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at 20% 30%, rgba(255,255,255,0.1) 0%, transparent 70%);
-            pointer-events: none;
-        }
-        
-        .profile-pic {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-bottom: 20px;
-            border: 4px solid rgba(255,255,255,0.2);
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        }
-        
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            font-weight: 700;
-            letter-spacing: -0.5px;
-        }
-        
-        .tagline {
-            font-size: 1.2rem;
-            opacity: 0.9;
-            margin-bottom: 20px;
-            font-weight: 300;
-        }
-        
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 20px;
-        }
-        
-        .social-links a {
-            color: white;
-            background: rgba(255,255,255,0.1);
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-        }
-        
-        .social-links a:hover {
-            background: rgba(255,255,255,0.2);
-            transform: translateY(-3px);
-        }
-        
-        h2 {
-            color: var(--primary);
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-            font-weight: 600;
-            position: relative;
-            display: inline-block;
-        }
-        
-        h2::after {
-            content: "";
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 50px;
-            height: 3px;
-            background: var(--secondary);
-            border-radius: 3px;
-        }
-        
-        .section {
-            margin-bottom: 40px;
-        }
-        
-        .card {
-            background: var(--card-bg);
-            border-radius: 12px;
-            padding: 25px;
-            margin-bottom: 25px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border-left: 4px solid var(--primary);
-        }
-        
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-        }
-        
-        .job-title {
-            font-weight: 700;
-            font-size: 1.2rem;
-            color: var(--dark);
-            margin-bottom: 5px;
-        }
-        
-        .company {
-            font-weight: 600;
-            color: var(--primary);
-            margin-bottom: 5px;
-        }
-        
-        .duration {
-            color: var(--gray);
-            font-size: 0.9rem;
-            margin-bottom: 15px;
-            display: inline-block;
-            background: #e2e8f0;
-            padding: 3px 8px;
-            border-radius: 4px;
-        }
-        
-        .location {
-            color: var(--dark-gray);
-            font-size: 0.9rem;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-        
-        .responsibilities {
-            padding-left: 20px;
-        }
-        
-        .responsibilities li {
-            margin-bottom: 8px;
-            position: relative;
-        }
-        
-        .responsibilities li::before {
-            content: "▹";
-            position: absolute;
-            left: -20px;
-            color: var(--secondary);
-        }
-        
-        .skills-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
-        }
-        
-        .skill-category {
-            background: var(--card-bg);
-            border-radius: 12px;
-            padding: 20px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            border-top: 3px solid var(--primary);
-        }
-        
-        .skill-category h3 {
-            color: var(--primary);
-            margin-top: 0;
-            margin-bottom: 15px;
-            font-size: 1.1rem;
-        }
-        
-        .skill-category ul {
-            padding-left: 20px;
-        }
-        
-        .skill-category li {
-            margin-bottom: 8px;
-            position: relative;
-        }
-        
-        .skill-category li::before {
-            content: "•";
-            position: absolute;
-            left: -15px;
-            color: var(--secondary);
-            font-weight: bold;
-        }
-        
-        .personal-details {
-            background: var(--card-bg);
-            border-radius: 12px;
-            padding: 25px;
-            margin-top: 20px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            border-left: 4px solid var(--secondary);
-        }
-        
-        .personal-details h3 {
-            color: var(--primary);
-            margin-top: 0;
-            margin-bottom: 15px;
-        }
-        
-        .personal-details-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 15px;
-        }
-        
-        .detail-item {
-            margin-bottom: 10px;
-        }
-        
-        .detail-item strong {
-            display: block;
-            color: var(--dark-gray);
-            font-size: 0.85rem;
-            margin-bottom: 3px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        
-        .detail-item span {
-            font-size: 1rem;
-            color: var(--dark);
-        }
-        
-        .contact-info {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: white;
-            padding: 30px;
-            border-radius: 12px;
-            margin-top: 40px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
-        
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        
-        .contact-icon {
-            background: rgba(255,255,255,0.1);
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-        }
-        
-        .contact-text a {
-            color: white;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-        
-        .contact-text a:hover {
-            color: var(--secondary);
-        }
-        
-        footer {
-            text-align: center;
-            margin-top: 50px;
-            padding: 20px;
-            color: var(--gray);
-            font-size: 0.9rem;
-        }
-        
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2rem;
-            }
-            
-            .tagline {
-                font-size: 1rem;
-            }
-            
-            .skills-container {
-                grid-template-columns: 1fr;
-            }
-            
-            .personal-details-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .contact-info {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        /* Animation */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .card, .skill-category, .personal-details {
-            animation: fadeIn 0.6s ease forwards;
-        }
-        
-        .card:nth-child(1) { animation-delay: 0.1s; }
-        .card:nth-child(2) { animation-delay: 0.2s; }
-        .card:nth-child(3) { animation-delay: 0.3s; }
-        .card:nth-child(4) { animation-delay: 0.4s; }
-        
-        /* Tooltip for skills */
-        .tooltip {
-            position: relative;
-            display: inline-block;
-        }
-        
-        .tooltip .tooltiptext {
-            visibility: hidden;
-            width: 120px;
-            background-color: var(--dark);
-            color: #fff;
-            text-align: center;
-            border-radius: 6px;
-            padding: 5px;
-            position: absolute;
-            z-index: 1;
-            bottom: 125%;
-            left: 50%;
-            margin-left: -60px;
-            opacity: 0;
-            transition: opacity 0.3s;
-            font-size: 0.8rem;
-        }
-        
-        .tooltip:hover .tooltiptext {
-            visibility: visible;
-            opacity: 1;
-        }
 
-        /* Portfolio Styles */
-        .portfolio-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 25px;
-            margin-top: 20px;
-        }
-        
-        .portfolio-item {
-            background: var(--card-bg);
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border-top: 3px solid var(--secondary);
-        }
-        
-        .portfolio-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-        }
-        
-        .video-container {
-            position: relative;
-            padding-bottom: 56.25%; /* 16:9 aspect ratio */
-            height: 0;
-            overflow: hidden;
-        }
-        
-        .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-        
-        .portfolio-description {
-            padding: 15px;
-        }
-        
-        .portfolio-description h3 {
-            margin-top: 0;
-            margin-bottom: 10px;
-            color: var(--primary);
-        }
-        
-        .portfolio-description p {
-            margin-bottom: 0;
-            color: var(--dark-gray);
-            font-size: 0.9rem;
-        }
-    </style>
-</head>
-<body>
-    <header>
-        <div class="container">
-            <!-- Add your profile picture here -->
-            <!-- <img src="your-profile-pic.jpg" alt="Shaikh Rizuan Alli" class="profile-pic"> -->
-            <h1>Shaikh Rizuan Alli</h1>
-            <p class="tagline">CGI Pipeline Specialist & IT Systems Professional</p>
-            <div class="social-links">
-                <a href="mailto:shaikhralli@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
-                <a href="tel:+919804865825" aria-label="Phone"><i class="fas fa-phone"></i></a>
-                <a href="https://linkedin.com/in/shaikh-rizuan-alli-965b131a1" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-            </div>
-        </div>
-    </header>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Baloo+2:wght@600;800&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --p:#5C35C5;--pl:#EDEAFC;--pd:#3D228A;
+  --a:#F4A228;--al:#FEF3DC;
+  --s:#2E9E5B;--sl:#E4F5EC;
+  --d:#D94040;--dl:#FCEAEA;
+  --i:#1976D2;--il:#E3F0FC;
+  --bg:var(--color-background-tertiary);
+  --card:var(--color-background-primary);
+  --txt:var(--color-text-primary);
+  --mut:var(--color-text-secondary);
+  --bdr:var(--color-border-tertiary);
+  --r:14px;
+}
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--txt);padding:0}
+#app{max-width:700px;margin:0 auto;padding:14px 12px 48px}
+.hdr{text-align:center;padding:14px 0 6px}
+.logo{font-family:'Baloo 2',cursive;font-size:24px;font-weight:800;color:var(--p)}
+.logo em{color:var(--a);font-style:normal}
+.sub{font-size:12px;color:var(--mut);margin-top:1px}
+.ai-badge{display:inline-flex;align-items:center;gap:5px;background:var(--pl);color:var(--pd);font-size:11px;font-weight:800;padding:3px 10px;border-radius:99px;margin-top:6px}
+.ai-dot{width:7px;height:7px;border-radius:50%;background:var(--p);animation:pulse 1.5s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(0.7)}}
 
-            <div class="container">
-                <section class="section">
-                    <h2>About Me</h2>
-                    <div class="card">
-                        <p>I am a dedicated CGI Pipeline and IT Systems professional with 15+ years of experience in the animation and VFX industry. My passion for 3D technology drives me to continuously expand my expertise while developing efficient solutions for complex production challenges.</p>
-                        
-                        <p>I possess extensive hands-on experience managing render farm infrastructures using industry-standard tools including Deadline, Royal Render, Render Pal, and Backburner. My technical proficiency spans multiple render engines such as Arnold, VRay, Redshift, and Mental Ray, with specialized knowledge in optimizing Render Wrangler workflows through both offline and online management systems like Fox and Blaze.</p>
-                        
-                        <p>My current focus includes developing integrated pipeline solutions by combining project management software with production workflows using Python and MEL scripting. I maintain active proficiency across the full 3D production suite: Maya, 3ds Max, Houdini, ZBrush, Substance, Nuke, and Fusion. Additionally, I leverage production management tools including ShotGrid, SyncSketch, Cerebro, HelixCore P4V, Trello, and spreadsheet solutions to streamline operations.</p>
-                        
-                        <p>To further enhance my technical and creative contributions, I'm currently advancing my skills in Maya lighting techniques, Nuke compositing workflows, and Houdini simulation pipelines. My approach combines technical problem-solving with a deep understanding of artistic requirements, enabling me to bridge the gap between IT infrastructure and creative production teams.</p>
-                    </div>
-                </section>
-            </div>
-  
+.nav{display:flex;gap:5px;background:var(--pl);border-radius:12px;padding:4px;margin:10px 0 12px}
+.ntab{flex:1;padding:7px 4px;border-radius:9px;font-size:12px;font-weight:800;text-align:center;cursor:pointer;color:var(--p);border:none;background:transparent;font-family:'Nunito',sans-serif;transition:all 0.15s}
+.ntab.on{background:var(--p);color:#fff}
 
-            <div class="personal-details">
-                <h3>Personal Details</h3>
-                <div class="personal-details-grid">
-                    <div class="detail-item">
-                        <strong>Date of Birth</strong>
-                        <span>07 April 1983</span>
-                    </div>
-                    <div class="detail-item">
-                        <strong>Father's Name</strong>
-                        <span>SK Usman Alli</span>
-                    </div>
-                    <div class="detail-item">
-                        <strong>Village</strong>
-                        <span>Taratua</span>
-                    </div>
-                    <div class="detail-item">
-                        <strong>District</strong>
-                        <span>Khordha</span>
-                    </div>
-                    <div class="detail-item">
-                        <strong>State</strong>
-                        <span>Odisha</span>
-                    </div>
-                    <div class="detail-item">
-                        <strong>Country</strong>
-                        <span>India</span>
-                    </div>
-                    <div class="detail-item">
-                        <strong>PIN</strong>
-                        <span>752057</span>
-                    </div>
-                    <div class="detail-item">
-                        <strong>Family</strong>
-                        <span>Married, father of two daughters</span>
-                    </div>
-                </div>
-            </div>
-        </section>
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:12px}
+.stat{background:var(--card);border:0.5px solid var(--bdr);border-radius:10px;padding:8px;text-align:center}
+.stat .sv{font-size:18px;font-weight:800;color:var(--p)}
+.stat.ac .sv{color:var(--s)}
+.stat.st .sv{color:var(--a)}
+.stat.lv .sv{color:var(--i)}
+.stat .sl{font-size:10px;color:var(--mut);font-weight:700;margin-top:1px}
 
-        <section class="section" id="experience">
-            <h2>Professional Experience</h2>
-            
-            <div class="card">
-                <div class="job-title">Pipeline Support</div>
-                <div class="company">Digitoonz Media & Entertainment LLC</div>
-                <div class="duration">January 2022 - Present (3 years 4 months)</div>
-                <div class="location"><i class="fas fa-map-marker-alt"></i> Kolkata, West Bengal, India</div>
-                <ul class="responsibilities">
-                    <li>Manage and optimize animation/VFX production pipelines</li>
-                    <li>Configure and maintain render farm infrastructure</li>
-                    <li>Develop Python scripts to automate production workflows</li>
-                    <li>Troubleshoot technical issues across the pipeline</li>
-                    <li>Implement ShotGrid for production tracking and asset management</li>
-                </ul>
-            </div>
+.lvbar-wrap{margin-bottom:12px}
+.lvbar-top{display:flex;justify-content:space-between;font-size:11px;font-weight:700;color:var(--mut);margin-bottom:4px}
+.lvbar-top span{color:var(--p);font-size:12px}
+.lvbar{background:var(--pl);border-radius:99px;height:8px;overflow:hidden}
+.lvbar-fill{height:100%;border-radius:99px;background:var(--p);transition:width 0.6s ease}
 
-            <div class="card">
-                <div class="job-title">System Administrator</div>
-                <div class="company">ILOAS</div>
-                <div class="duration">December 2020 - January 2022 (1 year 2 months)</div>
-                <div class="location"><i class="fas fa-map-marker-alt"></i> Kolkata, West Bengal, Bidhannagar 700064</div>
-                <ul class="responsibilities">
-                    <li>Managed high-performance computing infrastructure for media production</li>
-                    <li>Implemented secure file transfer solutions for large media assets</li>
-                    <li>Configured and maintained version control systems (Perforce HelixCore)</li>
-                    <li>Optimized network infrastructure for media workflows</li>
-                </ul>
-            </div>
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.chip{padding:5px 12px;border-radius:99px;font-size:11px;font-weight:800;border:1.5px solid var(--bdr);background:var(--card);color:var(--mut);cursor:pointer;transition:all 0.15s}
+.chip.on{background:var(--p);color:#fff;border-color:var(--p)}
 
-            <div class="card">
-                <div class="job-title">System Administrator</div>
-                <div class="company">LILA MOTION PICTURES PVT LTD</div>
-                <div class="duration">June 2020 - December 2020 (7 months)</div>
-                <div class="location"><i class="fas fa-map-marker-alt"></i> Kolkata, West Bengal, India</div>
-                <ul class="responsibilities">
-                    <li>Maintained post-production infrastructure for film production</li>
-                    <li>Managed high-capacity storage solutions for 4K/8K media</li>
-                    <li>Supported Nuke and Fusion compositing workstations</li>
-                    <li>Implemented backup solutions for critical media assets</li>
-                </ul>
-            </div>
+.q-card{background:var(--card);border:1.5px solid var(--bdr);border-radius:var(--r);padding:18px;margin-bottom:12px;animation:fup 0.3s ease}
+@keyframes fup{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.q-meta{display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap}
+.qbadge{display:inline-block;padding:2px 9px;border-radius:99px;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:0.4px}
+.bm{background:#EDEAFC;color:#3D228A}
+.bf{background:#FEF3DC;color:#8A6000}
+.bs{background:#E4F5EC;color:#1C7040}
+.bl{background:#E3F0FC;color:#0C447C}
+.be{background:#FCEAEA;color:#7A2020}
+.diff{font-size:10px;font-weight:800;padding:2px 9px;border-radius:99px}
+.d1{background:#E4F5EC;color:#1C7040}
+.d2{background:#FEF3DC;color:#8A6000}
+.d3{background:#FCEAEA;color:#7A2020}
+.ai-tag{font-size:10px;color:var(--p);font-weight:700;background:var(--pl);padding:2px 8px;border-radius:99px}
 
-            <div class="card">
-                <div class="job-title">Head Of Information Technology</div>
-                <div class="company">BFX CGI</div>
-                <div class="duration">June 2009 - February 2020 (10 years 9 months)</div>
-                <div class="location"><i class="fas fa-map-marker-alt"></i> Kolkata, West Bengal, India</div>
-                <ul class="responsibilities">
-                    <li>Built and managed render farm with 500+ nodes</li>
-                    <li>Implemented pipeline tools using Python and MEL</li>
-                    <li>Integrated various render managers (Deadline, Royal Render)</li>
-                    <li>Developed asset management systems for VFX production</li>
-                    <li>Optimized workflows for Maya, Houdini, and Nuke pipelines</li>
-                </ul>
-            </div>
-        </section>
+.q-txt{font-size:16px;font-weight:700;color:var(--txt);line-height:1.5;margin-bottom:12px}
+.hint{font-size:11px;color:var(--mut);font-style:italic;margin-bottom:10px}
+.eq-box{font-size:20px;font-weight:800;color:var(--p);background:var(--pl);border-radius:9px;padding:10px 16px;display:inline-block;margin-bottom:12px}
 
-        <section class="section" id="portfolio">
-            <h2>Project Portfolio</h2>
-            <div class="card">
-                <p>This portfolio highlights key projects where I served as Pipeline Supervisor. For some productions, I managed and optimized client-provided pipeline tools while training artists to ensure efficient workflows and timely delivery. For others, I designed and implemented custom Maya pipelines from the ground up, establishing seamless workflows across the entire production pipeline from asset creation to final compositing.</p>
-            </div>
-            
-            <div class="portfolio-container">
-                <div class="portfolio-item">
-                    <div class="video-container">
-                        <iframe src="https://www.youtube.com/embed/dwtSy4tsXj0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    </div>
-                    <div class="portfolio-description">
-                        <h3>Bed Time Defenders</h3>
-                        <p>Pipeline architecture design and workflow optimization</p>
-                    </div>
-                </div>
-                
-                <div class="portfolio-item">
-                    <div class="video-container">
-                        <iframe src="https://www.youtube.com/embed/y7NGAddJ27E" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    </div>
-                    <div class="portfolio-description">
-                        <h3>Cody Time (CocoMelon)</h3>
-                        <p>Custom Maya pipeline development covering asset management, shot production, and lighting workflows</p>
-                    </div>
-                </div>
-                
-                <div class="portfolio-item">
-                    <div class="video-container">
-                        <iframe src="https://www.youtube.com/embed/GyKeT16zOdk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    </div>
-                    <div class="portfolio-description">
-                        <h3>DORA</h3>
-                        <p>End-to-end Maya pipeline development and implementation</p>
-                    </div>
-                </div>
-                
-                <div class="portfolio-item">
-                    <div class="video-container">
-                        <iframe src="https://www.youtube.com/embed/aAaSqRCr6sk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    </div>
-                    <div class="portfolio-description">
-                        <h3>FriendZSpace</h3>
-                        <p>ShotGrid pipeline implementation, artist training, and documentation. Oversaw shot publishing and quality control processes</p>
-                    </div>
-                </div>
-                
-                <div class="portfolio-item">
-                    <div class="video-container">
-                        <iframe src="https://www.youtube.com/embed/iT1eUIADY84?list=PLNvhiaSh0IpAr41MGXztPj_xzw8lTdpMx" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    </div>
-                    <div class="portfolio-description">
-                        <h3>Blippi Wonders</h3>
-                        <p>Pipeline tools onboarding, artist training, and technical documentation</p>
-                    </div>
-                </div>
-                
-                <div class="portfolio-item">
-                    <div class="video-container">
-                        <iframe src="https://www.youtube.com/embed/CcuodcWK2-s" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    </div>
-                    <div class="portfolio-description">
-                        <h3>100% WOLF</h3>
-                        <p>Maintained and enhanced Mighty Animation's ShotGrid pipeline tools for successful project delivery</p>
-                    </div>
-                </div>
-                
-                <div class="portfolio-item">
-                    <div class="video-container">
-                        <iframe src="https://www.youtube.com/embed/ACqrIPcUjqI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    </div>
-                    <div class="portfolio-description">
-                        <h3>Blue's Clues and You</h3>
-                        <p>Developed custom automation scripts to optimize production workflows</p>
-                    </div>
-                </div>
-                
-                <div class="portfolio-item">
-                    <div class="video-container">
-                        <iframe src="https://www.youtube.com/embed/AxT89ill-9g" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    </div>
-                    <div class="portfolio-description">
-                        <h3>Lucas The Spider</h3>
-                        <p>Managed client-provided pipeline tools and conducted comprehensive artist training</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.opt{padding:10px 13px;border:2px solid var(--bdr);border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;transition:all 0.15s;background:var(--bg);text-align:left;color:var(--txt)}
+.opt:hover:not(.dis){border-color:var(--p);background:var(--pl);color:var(--p)}
+.opt.ok{border-color:var(--s);background:var(--sl);color:var(--s)}
+.opt.no{border-color:var(--d);background:var(--dl);color:var(--d)}
+.opt.dis{cursor:default}
 
-        <section class="section" id="skills">
-            <h2>Technical Skills & Knowledge</h2>
-            <div class="skills-container">
-                <div class="skill-category">
-                    <h3>VFX Pipeline</h3>
-                    <ul>
-                        <li>Render Managers: Deadline, Royal Render, Backburner</li>
-                        <li>Render Engines: Arnold, VRay, Redshift, Mental Ray</li>
-                        <li>Production Tracking: ShotGrid, Trello</li>
-                        <li>Version Control: Perforce HelixCore</li>
-                        <li>Review Tools: SyncSketch, Cerebro</li>
-                    </ul>
-                </div>
-                
-                <div class="skill-category">
-                    <h3>3D Software</h3>
-                    <ul>
-                        <li>Autodesk Maya & 3ds Max</li>
-                        <li>SideFX Houdini</li>
-                        <li>Pixologic ZBrush</li>
-                        <li>Substance Painter/Designer</li>
-                        <li>Foundry Nuke & Blackmagic Fusion</li>
-                    </ul>
-                </div>
-                
-                <div class="skill-category">
-                    <h3>Pipeline Development</h3>
-                    <ul>
-                        <li>Python Scripting through AI</li>
-                        <li>MEL Scripting</li>
-                        <li>Workflow Automation</li>
-                        <li>Tool Development</li>
-                        <li>API Integration</li>
-                    </ul>
-                </div>
-                
-                <div class="skill-category">
-                    <h3>IT Infrastructure</h3>
-                    <ul>
-                        <li>Render Farm Management</li>
-                        <li>High-performance Storage</li>
-                        <li>Linux/Windows Administration</li>
-                        <li>Network Infrastructure</li>
-                        <li>Virtualization (VMware, Hyper-V)</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
+input.ti{border:2px solid var(--bdr);border-radius:8px;padding:8px 12px;font-size:15px;font-family:'Nunito',sans-serif;font-weight:700;outline:none;background:var(--bg);color:var(--txt);transition:border-color 0.2s;min-width:120px}
+input.ti:focus{border-color:var(--p)}
+input.ti.ok{border-color:var(--s);background:var(--sl);color:var(--s)}
+input.ti.no{border-color:var(--d);background:var(--dl);color:var(--d)}
+textarea.ta{width:100%;border:2px solid var(--bdr);border-radius:10px;padding:10px 12px;font-size:13px;font-family:'Nunito',sans-serif;font-weight:600;min-height:80px;outline:none;resize:vertical;background:var(--bg);color:var(--txt);transition:border-color 0.2s}
+textarea.ta:focus{border-color:var(--p)}
+textarea.ta.ok{border-color:var(--s);background:var(--sl)}
 
-        <div class="contact-info">
-            <div class="contact-item">
-                <div class="contact-icon">
-                    <i class="fas fa-envelope"></i>
-                </div>
-                <div class="contact-text">
-                    <strong>Email</strong>
-                    <a href="mailto:shaikhralli@gmail.com">shaikhralli@gmail.com</a>
-                </div>
-            </div>
-            
-            <div class="contact-item">
-                <div class="contact-icon">
-                    <i class="fas fa-phone"></i>
-                </div>
-                <div class="contact-text">
-                    <strong>Mobile</strong>
-                    <a href="tel:+919804865825">+91 9804865825</a>
-                </div>
-            </div>
-            
-            <div class="contact-item">
-                <div class="contact-icon">
-                    <i class="fab fa-linkedin-in"></i>
-                </div>
-                <div class="contact-text">
-                    <strong>LinkedIn</strong>
-                    <a href="https://linkedin.com/in/shaikh-rizuan-alli-965b131a1" target="_blank">shaikh-rizuan-alli</a>
-                </div>
-            </div>
-        </div>
+.fb{margin-top:10px;padding:9px 13px;border-radius:9px;font-size:13px;font-weight:700;display:none;align-items:center;gap:7px}
+.fb.show{display:flex}
+.fb.ok{background:var(--sl);color:var(--s)}
+.fb.no{background:var(--dl);color:var(--d)}
+.fb-ic{font-size:16px}
 
-        <footer>
-            <p>&copy; 2024 Shaikh Rizuan Alli. All rights reserved.</p>
-        </footer>
+.btn-row{display:flex;gap:9px;margin-top:12px;flex-wrap:wrap}
+.btn{padding:10px 20px;border-radius:9px;font-size:13px;font-weight:800;cursor:pointer;border:none;font-family:'Nunito',sans-serif;transition:all 0.16s}
+.btn-p{background:var(--p);color:#fff}
+.btn-p:hover{background:var(--pd)}
+.btn-s{background:var(--bg);color:var(--p);border:2px solid var(--p)}
+.btn-s:hover{background:var(--pl)}
+.btn-a{background:var(--a);color:#fff}
+.btn-a:hover{background:#D8911E}
+.btn:disabled{opacity:0.45;cursor:default}
+
+.loading-card{background:var(--card);border:1.5px solid var(--bdr);border-radius:var(--r);padding:32px;text-align:center;margin-bottom:12px}
+.spinner{width:32px;height:32px;border:3px solid var(--pl);border-top-color:var(--p);border-radius:50%;animation:spin 0.8s linear infinite;margin:0 auto 12px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loading-txt{font-size:13px;color:var(--mut);font-weight:700}
+.loading-sub{font-size:11px;color:var(--mut);margin-top:4px}
+
+.err-card{background:var(--card);border:1.5px solid var(--bdr);border-radius:var(--r);padding:20px;text-align:center;margin-bottom:12px}
+.err-txt{font-size:14px;font-weight:700;color:var(--d);margin-bottom:8px}
+.err-sub{font-size:12px;color:var(--mut);margin-bottom:12px}
+
+.sec-title{font-size:14px;font-weight:800;color:var(--p);margin-bottom:10px;display:flex;align-items:center;gap:7px}
+.sec-title::after{content:'';flex:1;height:0.5px;background:var(--bdr)}
+.prog-sec{background:var(--card);border:0.5px solid var(--bdr);border-radius:var(--r);padding:14px;margin-bottom:12px}
+.prog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:10px}
+.pi{text-align:center;padding:9px 5px;border-radius:9px;background:var(--bg)}
+.pi .pn{font-size:20px;font-weight:800;color:var(--p)}
+.pi.ac .pn{color:var(--s)}
+.pi.st .pn{color:var(--a)}
+.pi .pl{font-size:10px;color:var(--mut);font-weight:700;margin-top:2px}
+.badge-row{display:flex;flex-wrap:wrap;gap:7px;margin-top:8px}
+.bdg{padding:4px 10px;border-radius:99px;font-size:11px;font-weight:700;background:var(--bg);color:var(--mut);border:1px solid var(--bdr)}
+.bdg.earned{background:var(--a);color:#fff;border-color:var(--a)}
+.lb-row{display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:0.5px solid var(--bdr)}
+.lb-row:last-child{border:none}
+.lb-rk{width:22px;height:22px;border-radius:50%;background:var(--pl);color:var(--p);font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center}
+.lb-rk.g{background:#FFD700;color:#6A4A00}
+.lb-rk.s{background:#C0C0C0;color:#404040}
+.lb-rk.b{background:#CD7F32;color:#fff}
+.lb-nm{flex:1;font-size:13px;font-weight:700}
+.lb-sc{font-size:13px;font-weight:800;color:var(--p)}
+.topic-prog{padding:9px 0;border-bottom:0.5px solid var(--bdr)}
+.topic-prog:last-child{border:none}
+.tp-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:5px}
+.tp-nm{font-size:13px;font-weight:800}
+.tp-ct{font-size:11px;color:var(--mut);font-weight:700}
+.tp-bar{background:var(--bdr);border-radius:99px;height:5px;overflow:hidden}
+.tp-fill{height:100%;border-radius:99px;background:var(--p)}
+
+.ai-section{background:var(--pl);border:1px solid #C8BFF7;border-radius:var(--r);padding:14px;margin-bottom:12px}
+.ai-sec-title{font-size:13px;font-weight:800;color:var(--pd);margin-bottom:8px}
+.ai-info{font-size:12px;color:var(--mut);line-height:1.6}
+.gen-btn-row{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+</style>
+
+<div id="app">
+<h2 class="sr-only" style="position:absolute;width:1px;height:1px;overflow:hidden">CBSE Class 6 AI-powered math practice app with live question generation</h2>
+
+<div class="hdr">
+  <div class="logo">Math<em>Guru</em> AI — Class 6</div>
+  <div class="sub">CBSE • AI-Generated Questions • Adaptive Learning</div>
+  <div class="ai-badge"><span class="ai-dot"></span> Powered by Claude AI — questions refresh every session</div>
+</div>
+
+<div class="nav">
+  <button class="ntab on" onclick="switchTab('practice')">Practice</button>
+  <button class="ntab" onclick="switchTab('ai')">AI Generator</button>
+  <button class="ntab" onclick="switchTab('progress')">Progress</button>
+  <button class="ntab" onclick="switchTab('topics')">Topics</button>
+</div>
+
+<div id="tab-practice">
+  <div class="stats-row">
+    <div class="stat"><div class="sv" id="st-pts">0</div><div class="sl">Points</div></div>
+    <div class="stat ac"><div class="sv" id="st-cor">0</div><div class="sl">Correct</div></div>
+    <div class="stat st"><div class="sv" id="st-str">0</div><div class="sl">Streak</div></div>
+    <div class="stat lv"><div class="sv" id="st-lv">1</div><div class="sl">Level</div></div>
+  </div>
+  <div class="lvbar-wrap">
+    <div class="lvbar-top"><span id="lv-name">Level 1 — Beginner</span><span id="xp-lbl">0 / 100 XP</span></div>
+    <div class="lvbar"><div class="lvbar-fill" id="xp-fill" style="width:0%"></div></div>
+  </div>
+  <div class="chips" id="topic-chips"></div>
+  <div id="q-area"></div>
+  <div class="btn-row" id="main-btns">
+    <button class="btn btn-p" id="check-btn" onclick="checkAnswer()">Check Answer</button>
+    <button class="btn btn-s" id="next-btn" onclick="nextQ()" style="display:none">Next ›</button>
+    <button class="btn btn-a" id="skip-btn" onclick="skipQ()">Skip</button>
+  </div>
+</div>
+
+<div id="tab-ai" style="display:none">
+  <div class="ai-section">
+    <div class="ai-sec-title">AI Question Generator</div>
+    <div class="ai-info">Generate fresh, unique questions on any Class 6 topic using Claude AI. Questions are created in real time — different every time you generate!</div>
+    <div class="gen-btn-row">
+      <select id="gen-topic" style="padding:7px 11px;border-radius:8px;border:1.5px solid var(--bdr);background:var(--card);color:var(--txt);font-family:'Nunito',sans-serif;font-size:13px;font-weight:700;outline:none">
+        <option value="Numbers">Numbers</option>
+        <option value="Fractions">Fractions</option>
+        <option value="Decimals">Decimals</option>
+        <option value="Algebra">Algebra</option>
+        <option value="Geometry">Geometry</option>
+        <option value="Measurement">Measurement</option>
+        <option value="Ratio & Proportion">Ratio & Proportion</option>
+        <option value="Mixed">Mixed Topics</option>
+      </select>
+      <select id="gen-type" style="padding:7px 11px;border-radius:8px;border:1.5px solid var(--bdr);background:var(--card);color:var(--txt);font-family:'Nunito',sans-serif;font-size:13px;font-weight:700;outline:none">
+        <option value="mcq">Multiple Choice</option>
+        <option value="fib">Fill in the Blank</option>
+        <option value="eq">Equation</option>
+        <option value="short">Short Answer</option>
+        <option value="long">Long Answer</option>
+        <option value="mixed">Mixed Types</option>
+      </select>
+      <select id="gen-diff" style="padding:7px 11px;border-radius:8px;border:1.5px solid var(--bdr);background:var(--card);color:var(--txt);font-family:'Nunito',sans-serif;font-size:13px;font-weight:700;outline:none">
+        <option value="easy">Easy</option>
+        <option value="medium" selected>Medium</option>
+        <option value="hard">Hard</option>
+      </select>
     </div>
-</body>
-</html>
+    <div class="gen-btn-row" style="margin-top:8px">
+      <button class="btn btn-p" onclick="generateAIQuestions(5)">Generate 5 Questions</button>
+      <button class="btn btn-s" onclick="generateAIQuestions(10)">Generate 10 Questions</button>
+      <div id="gen-status" style="font-size:12px;color:var(--mut);font-weight:700;align-self:center"></div>
+    </div>
+  </div>
+  <div id="ai-q-list"></div>
+</div>
+
+<div id="tab-progress" style="display:none">
+  <div class="prog-sec">
+    <div class="sec-title">Your Stats</div>
+    <div class="prog-grid">
+      <div class="pi"><div class="pn" id="p-att">0</div><div class="pl">Attempted</div></div>
+      <div class="pi ac"><div class="pn" id="p-cor">0</div><div class="pl">Correct</div></div>
+      <div class="pi st"><div class="pn" id="p-best">0</div><div class="pl">Best Streak</div></div>
+    </div>
+  </div>
+  <div class="prog-sec">
+    <div class="sec-title">Badges</div>
+    <div class="badge-row" id="badge-row"></div>
+  </div>
+  <div class="prog-sec">
+    <div class="sec-title">Leaderboard</div>
+    <div id="lb-list"></div>
+  </div>
+</div>
+
+<div id="tab-topics" style="display:none">
+  <div class="prog-sec">
+    <div class="sec-title">CBSE Class 6 Chapters</div>
+    <div id="topics-list"></div>
+  </div>
+</div>
+
+</div>
+
+<script>
+const TOPICS_DEF=[
+  {id:'num',label:'Numbers',ch:'Ch 1,3 — Knowing Numbers, Playing with Numbers'},
+  {id:'frac',label:'Fractions',ch:'Ch 7 — Fractions'},
+  {id:'dec',label:'Decimals',ch:'Ch 8 — Decimals'},
+  {id:'alg',label:'Algebra',ch:'Ch 11 — Algebra'},
+  {id:'geo',label:'Geometry',ch:'Ch 4,5 — Geometry & Shapes'},
+  {id:'meas',label:'Measurement',ch:'Ch 10 — Mensuration'},
+  {id:'ratio',label:'Ratio',ch:'Ch 12 — Ratio & Proportion'},
+];
+
+const BASE_QS=[
+  {type:'mcq',topic:'num',level:1,text:'What is the place value of 7 in 3,746?',opts:['7 ones','7 hundreds','7 tens','7 thousands'],ans:1,hint:'Count positions from the right.'},
+  {type:'mcq',topic:'num',level:1,text:'Which is the smallest prime number?',opts:['1','2','3','0'],ans:1,hint:'A prime number has exactly 2 factors.'},
+  {type:'mcq',topic:'num',level:2,text:'What is the LCM of 4 and 6?',opts:['24','12','8','6'],ans:1,hint:'Least Common Multiple'},
+  {type:'mcq',topic:'num',level:2,text:'HCF of 18 and 24 is?',opts:['3','6','9','12'],ans:1,hint:'Highest Common Factor'},
+  {type:'mcq',topic:'num',level:3,text:'Which is a prime number?',opts:['15','21','37','49'],ans:2,hint:'Divisible only by 1 and itself.'},
+  {type:'fib',topic:'frac',level:1,pre:'1/2 + 1/4 = ',post:'',ans:'3/4',altAns:['3/4','0.75'],hint:'Find common denominator first.'},
+  {type:'fib',topic:'frac',level:2,pre:'Simplest form of 6/8 = ',post:'',ans:'3/4',altAns:['3/4'],hint:'Divide by HCF of numerator and denominator.'},
+  {type:'fib',topic:'frac',level:3,pre:'2/3 × 3/4 = ',post:'',ans:'1/2',altAns:['1/2','0.5'],hint:'Multiply numerators, then denominators.'},
+  {type:'mcq',topic:'dec',level:1,text:'What is 0.5 + 0.3?',opts:['0.8','0.53','1.5','8'],ans:0,hint:'Line up decimal points.'},
+  {type:'mcq',topic:'dec',level:2,text:'Which is greater: 0.72 or 0.7?',opts:['0.7','0.72','Equal','Cannot say'],ans:1,hint:'Compare digit by digit.'},
+  {type:'fib',topic:'dec',level:2,pre:'2.5 × 4 = ',post:'',ans:'10',altAns:['10','10.0'],hint:'Multiply as whole numbers, then place decimal.'},
+  {type:'eq',topic:'alg',level:1,eq:'x + 5 = 12',var:'x',ans:'7',hint:'Subtract 5 from both sides.'},
+  {type:'eq',topic:'alg',level:2,eq:'3x = 21',var:'x',ans:'7',hint:'Divide both sides by 3.'},
+  {type:'eq',topic:'alg',level:2,eq:'x - 8 = 15',var:'x',ans:'23',hint:'Add 8 to both sides.'},
+  {type:'eq',topic:'alg',level:3,eq:'2x + 3 = 17',var:'x',ans:'7',hint:'Subtract 3, then divide by 2.'},
+  {type:'eq',topic:'alg',level:3,eq:'5x - 10 = 20',var:'x',ans:'6',hint:'Add 10, then divide by 5.'},
+  {type:'short',topic:'geo',level:1,text:'Sum of all angles in a triangle?',ans:'180',altAns:['180','180 degrees','180°'],hint:'This is a fundamental property.'},
+  {type:'short',topic:'geo',level:2,text:'A square has side 6 cm. What is its perimeter (in cm)?',ans:'24',altAns:['24','24 cm'],hint:'Perimeter = 4 × side'},
+  {type:'long',topic:'geo',level:2,text:'Write 2 differences between a rectangle and a square.',modelAns:'Rectangle: opposite sides equal. Square: all 4 sides equal. A square is a special rectangle where all sides are equal.',hint:'Think about sides and angles.'},
+  {type:'mcq',topic:'geo',level:2,text:'How many lines of symmetry does a circle have?',opts:['0','1','4','Infinite'],ans:3,hint:'A circle is symmetric around its center.'},
+  {type:'fib',topic:'meas',level:1,pre:'1 kilometre = ',post:' metres.',ans:'1000',altAns:['1000'],hint:'Kilo = 1000'},
+  {type:'mcq',topic:'meas',level:2,text:'Area of rectangle: length 8 cm, breadth 5 cm?',opts:['13 cm²','26 cm','40 cm²','40 cm'],ans:2,hint:'Area = length × breadth'},
+  {type:'fib',topic:'meas',level:3,pre:'The perimeter of a circle is called its ',post:'.',ans:'circumference',altAns:['circumference'],hint:'Starts with "circum"'},
+  {type:'mcq',topic:'ratio',level:1,text:'Ratio of 4 to 8 in simplest form?',opts:['4:8','2:4','1:2','8:4'],ans:2,hint:'Divide both by HCF.'},
+  {type:'short',topic:'ratio',level:2,text:'In a class of 30, boys:girls = 2:3. How many girls?',ans:'18',altAns:['18','18 girls'],hint:'Girls = 3/5 × 30'},
+  {type:'mcq',topic:'ratio',level:3,text:'5 pens cost Rs.35. Cost of 8 pens?',opts:['Rs.56','Rs.40','Rs.48','Rs.60'],ans:0,hint:'Find cost of 1 pen first.'},
+];
+
+let aiGeneratedQs=[];
+
+const ST={
+  tab:'practice',topic:'all',curQ:null,done:false,
+  pts:0,cor:0,att:0,xp:0,lv:1,streak:0,best:0,
+  used:[],badges:[],aiQsLoaded:false,
+};
+
+const LV_NAMES=['','Beginner','Explorer','Thinker','Scholar','Wizard'];
+const LV_XP=[0,0,100,250,450,700];
+const BADGES_DEF=[
+  {id:'first',label:'First Step',req:s=>s.att>=1},
+  {id:'ten',label:'10 Questions',req:s=>s.att>=10},
+  {id:'streak5',label:'5 in a Row',req:s=>s.streak>=5},
+  {id:'lv2',label:'Level 2',req:s=>s.lv>=2},
+  {id:'lv3',label:'Level 3',req:s=>s.lv>=3},
+  {id:'ai',label:'AI Explorer',req:s=>s.aiQsLoaded},
+];
+
+function switchTab(t){
+  ST.tab=t;
+  ['practice','ai','progress','topics'].forEach(x=>{
+    document.getElementById('tab-'+x).style.display=x===t?'block':'none';
+  });
+  document.querySelectorAll('.ntab').forEach((el,i)=>{
+    el.classList.toggle('on',['practice','ai','progress','topics'][i]===t);
+  });
+  if(t==='progress')renderProgress();
+  if(t==='topics')renderTopics();
+}
+
+function getAllQs(){
+  return [...BASE_QS,...aiGeneratedQs];
+}
+
+function getPool(){
+  let all=getAllQs();
+  let pool=all.filter((q,i)=>{
+    if(ST.topic!=='all'){
+      const topicMap={num:'num',frac:'frac',dec:'dec',alg:'alg',geo:'geo',meas:'meas',ratio:'ratio'};
+      if(q.topic!==ST.topic)return false;
+    }
+    if((q.level||1)>ST.lv+1)return false;
+    return true;
+  });
+  let unseen=pool.filter((q,i)=>!ST.used.includes(all.indexOf(q)));
+  if(unseen.length===0){ST.used=[];unseen=pool;}
+  return unseen;
+}
+
+function nextQ(){
+  ST.done=false;
+  document.getElementById('check-btn').style.display='inline-block';
+  document.getElementById('next-btn').style.display='none';
+  document.getElementById('skip-btn').style.display='inline-block';
+  let pool=getPool();
+  if(!pool.length){
+    document.getElementById('q-area').innerHTML='<div style="background:var(--card);border:1.5px solid var(--bdr);border-radius:14px;padding:28px;text-align:center"><div style="font-size:14px;font-weight:800;color:var(--p);margin-bottom:6px">All questions done!</div><div style="font-size:12px;color:var(--mut)">Go to AI Generator tab to get fresh questions, or pick another topic.</div></div>';
+    return;
+  }
+  let q=pool[Math.floor(Math.random()*pool.length)];
+  ST.curQ=q;
+  let all=getAllQs();
+  ST.used.push(all.indexOf(q));
+  renderQ(q);
+}
+
+function renderQ(q){
+  const bt={mcq:'bm',fib:'bf',short:'bs',long:'bl',eq:'be'};
+  const bl={mcq:'Multiple Choice',fib:'Fill in Blank',short:'Short Answer',long:'Long Answer',eq:'Equation'};
+  const dl={1:'d1',2:'d2',3:'d3'};
+  const dn={1:'Easy',2:'Medium',3:'Hard'};
+  const isAI=aiGeneratedQs.includes(q);
+  let meta=`<div class="q-meta">
+    <span class="qbadge ${bt[q.type]||'bm'}">${bl[q.type]||q.type}</span>
+    <span class="diff ${dl[q.level||1]||'d2'}">${dn[q.level||1]||'Medium'}</span>
+    ${isAI?'<span class="ai-tag">AI Generated</span>':''}
+  </div>`;
+  let body='';
+  if(q.type==='mcq'){
+    const opts=q.opts||q.options||[];
+    body=`<div class="q-txt">${q.text||q.question}</div>
+    ${q.hint?`<div class="hint">Hint: ${q.hint}</div>`:''}
+    <div class="opts">${opts.map((o,i)=>`<button class="opt" data-i="${i}" onclick="pickMCQ(${i})">${o}</button>`).join('')}</div>`;
+  } else if(q.type==='fib'){
+    body=`<div class="q-txt">${q.pre||''}</div>
+    ${q.hint?`<div class="hint">Hint: ${q.hint}</div>`:''}
+    <div style="display:flex;align-items:center;gap:9px;flex-wrap:wrap">
+      <input class="ti" id="fib-i" type="text" placeholder="Answer" style="width:130px" autocomplete="off" onkeydown="if(event.key==='Enter')checkAnswer()">
+      <span style="font-size:15px;font-weight:600;color:var(--txt)">${q.post||''}</span>
+    </div>`;
+  } else if(q.type==='short'){
+    body=`<div class="q-txt">${q.text||q.question}</div>
+    ${q.hint?`<div class="hint">Hint: ${q.hint}</div>`:''}
+    <input class="ti" id="short-i" type="text" placeholder="Your answer" style="width:200px" autocomplete="off" onkeydown="if(event.key==='Enter')checkAnswer()">`;
+  } else if(q.type==='long'){
+    body=`<div class="q-txt">${q.text||q.question}</div>
+    ${q.hint?`<div class="hint">Hint: ${q.hint}</div>`:''}
+    <textarea class="ta" id="long-i" placeholder="Write your detailed answer here..."></textarea>`;
+  } else if(q.type==='eq'){
+    body=`<div class="q-txt">Solve for <strong>${q.var||q.variable}</strong>:</div>
+    <div class="eq-box">${q.eq||q.equation}</div>
+    ${q.hint?`<div class="hint">Hint: ${q.hint}</div>`:''}
+    <div style="display:flex;align-items:center;gap:9px">
+      <span style="font-size:15px;font-weight:700;color:var(--mut)">${q.var||q.variable} =</span>
+      <input class="ti" id="eq-i" type="text" placeholder="?" style="width:90px" autocomplete="off" onkeydown="if(event.key==='Enter')checkAnswer()">
+    </div>`;
+  }
+  document.getElementById('q-area').innerHTML=`
+    <div class="q-card">${meta}${body}
+    <div class="fb" id="fb"><span class="fb-ic" id="fb-ic"></span><span id="fb-txt"></span></div>
+    </div>`;
+  selMCQ=null;
+}
+
+let selMCQ=null;
+function pickMCQ(i){
+  if(ST.done)return;
+  selMCQ=i;
+  document.querySelectorAll('.opt').forEach((el,j)=>{
+    el.style.borderColor=j===i?'var(--p)':'';
+    el.style.background=j===i?'var(--pl)':'';
+    el.style.color=j===i?'var(--p)':'';
+  });
+}
+
+function checkAnswer(){
+  if(ST.done)return;
+  const q=ST.curQ;
+  if(!q)return;
+  let correct=false;
+  ST.att++;
+  const ansKey=q.ans!==undefined?q.ans:q.answer;
+  if(q.type==='mcq'){
+    if(selMCQ===null){showFB(false,'Please select an option!');return;}
+    correct=selMCQ===ansKey;
+    document.querySelectorAll('.opt').forEach((el,i)=>{
+      el.classList.add('dis');
+      if(i===ansKey)el.classList.add('ok');
+      else if(i===selMCQ&&!correct)el.classList.add('no');
+    });
+    selMCQ=null;
+    const opts=q.opts||q.options||[];
+    if(!correct)showFB(false,'Correct answer: '+(opts[ansKey]||ansKey));
+    else showFB(true,'');
+  } else if(q.type==='fib'){
+    const v=(document.getElementById('fib-i').value||'').trim().toLowerCase();
+    const alts=(q.altAns||q.altAnswers||[String(ansKey)]).map(a=>a.toLowerCase());
+    correct=alts.includes(v)||v===String(ansKey).toLowerCase();
+    const el=document.getElementById('fib-i');
+    el.classList.add(correct?'ok':'no');el.disabled=true;
+    if(!correct)showFB(false,'Correct answer: '+ansKey);
+  } else if(q.type==='short'){
+    const v=(document.getElementById('short-i').value||'').trim().toLowerCase();
+    const alts=(q.altAns||q.altAnswers||[String(ansKey)]).map(a=>a.toLowerCase());
+    correct=alts.includes(v)||v===String(ansKey).toLowerCase();
+    const el=document.getElementById('short-i');
+    el.classList.add(correct?'ok':'no');el.disabled=true;
+    if(!correct)showFB(false,'Correct answer: '+ansKey);
+  } else if(q.type==='long'){
+    const v=(document.getElementById('long-i').value||'').trim();
+    correct=v.length>15;
+    document.getElementById('long-i').classList.add('ok');
+    document.getElementById('long-i').disabled=true;
+    showFB(correct,'Model answer: '+(q.modelAns||q.model_ans||ansKey||'Good effort!'));
+    if(!correct){ST.done=false;return;}
+  } else if(q.type==='eq'){
+    const v=(document.getElementById('eq-i').value||'').trim();
+    correct=v===String(ansKey);
+    const el=document.getElementById('eq-i');
+    el.classList.add(correct?'ok':'no');el.disabled=true;
+    if(!correct)showFB(false,'Correct: '+(q.var||q.variable)+' = '+ansKey);
+  }
+  ST.done=true;
+  if(correct){
+    ST.cor++;ST.streak++;
+    if(ST.streak>ST.best)ST.best=ST.streak;
+    const pts=(q.level||1)*10+(ST.streak>2?5:0);
+    ST.pts+=pts;ST.xp+=pts;
+    updateLevel();
+    if(q.type!=='long')showFB(true,'Correct! +'+pts+' pts'+(ST.streak>1?' (streak +5!)':''));
+  } else {
+    ST.streak=0;
+  }
+  document.getElementById('check-btn').style.display='none';
+  document.getElementById('next-btn').style.display='inline-block';
+  document.getElementById('skip-btn').style.display='none';
+  updateUI();checkBadges();
+}
+
+function showFB(ok,msg){
+  const fb=document.getElementById('fb');
+  if(!fb)return;
+  fb.className='fb show '+(ok?'ok':'no');
+  document.getElementById('fb-ic').textContent=ok?'✓':'✗';
+  document.getElementById('fb-txt').textContent=msg;
+}
+
+function skipQ(){ST.streak=0;ST.att++;updateUI();nextQ();}
+
+function updateLevel(){
+  let l=1;
+  while(l<5&&ST.xp>=LV_XP[l+1])l++;
+  ST.lv=l;
+  const base=LV_XP[l];
+  const next=l<5?LV_XP[l+1]:LV_XP[5]+200;
+  const pct=Math.min(100,Math.round((ST.xp-base)/(next-base)*100));
+  document.getElementById('xp-fill').style.width=pct+'%';
+  document.getElementById('lv-name').textContent='Level '+l+' — '+LV_NAMES[l];
+  document.getElementById('xp-lbl').textContent=ST.xp+' / '+next+' XP';
+  document.getElementById('st-lv').textContent=l;
+}
+
+function updateUI(){
+  document.getElementById('st-pts').textContent=ST.pts;
+  document.getElementById('st-cor').textContent=ST.cor;
+  document.getElementById('st-str').textContent=ST.streak;
+}
+
+function checkBadges(){
+  BADGES_DEF.forEach(b=>{
+    if(!ST.badges.includes(b.id)&&b.req(ST))ST.badges.push(b.id);
+  });
+}
+
+async function generateAIQuestions(count){
+  const topic=document.getElementById('gen-topic').value;
+  const qtype=document.getElementById('gen-type').value;
+  const diff=document.getElementById('gen-diff').value;
+  const status=document.getElementById('gen-status');
+  const listEl=document.getElementById('ai-q-list');
+  status.textContent='Generating...';
+  listEl.innerHTML=`<div class="loading-card"><div class="spinner"></div><div class="loading-txt">Claude AI is creating ${count} new questions...</div><div class="loading-sub">Topic: ${topic} • Difficulty: ${diff}</div></div>`;
+  const diffMap={easy:'easy (Level 1 — simple, one-step)',medium:'medium (Level 2 — two-step problems)',hard:'hard (Level 3 — multi-step, word problems)'};
+  const typeMap={mcq:'multiple choice with 4 options',fib:'fill in the blank',eq:'solve the equation (linear equations with one variable)',short:'short answer',long:'long answer / explain',mixed:'a mix of MCQ, fill in blank, equation, and short answer'};
+  const prompt=`You are a CBSE Class 6 Mathematics teacher in India. Generate exactly ${count} math questions for the topic: "${topic}".
+Question types: ${typeMap[qtype]||qtype}. Difficulty: ${diffMap[diff]||diff}.
+Follow CBSE Class 6 syllabus strictly.
+
+Return ONLY a valid JSON array — no markdown, no explanation, no backticks. Each object in the array must have these fields:
+- type: "mcq" | "fib" | "eq" | "short" | "long"
+- topic: one of "num"|"frac"|"dec"|"alg"|"geo"|"meas"|"ratio"
+- level: 1|2|3
+- hint: string (one helpful hint without giving the answer)
+- For MCQ: "text" (question), "opts" (array of 4 strings), "ans" (0-indexed correct option number)
+- For FIB: "pre" (text before blank), "post" (text after blank, can be empty string), "ans" (correct answer string), "altAns" (array of accepted answer strings)
+- For EQ: "eq" (equation string like "2x + 3 = 11"), "var" (variable like "x"), "ans" (numeric answer as string)
+- For SHORT: "text" (question), "ans" (answer string), "altAns" (array of accepted answer strings)
+- For LONG: "text" (question), "modelAns" (ideal answer for teacher reference)
+
+Make sure all questions are age-appropriate, clearly worded, and mathematically correct for Class 6 CBSE students.`;
+  try{
+    const resp=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        model:'claude-sonnet-4-20250514',
+        max_tokens:1000,
+        messages:[{role:'user',content:prompt}]
+      })
+    });
+    const data=await resp.json();
+    if(!resp.ok)throw new Error(data.error?.message||'API error');
+    const rawText=data.content.map(c=>c.text||'').join('');
+    let cleaned=rawText.replace(/```json|```/g,'').trim();
+    const startIdx=cleaned.indexOf('[');
+    const endIdx=cleaned.lastIndexOf(']');
+    if(startIdx===-1||endIdx===-1)throw new Error('No JSON array found');
+    cleaned=cleaned.slice(startIdx,endIdx+1);
+    const questions=JSON.parse(cleaned);
+    if(!Array.isArray(questions)||!questions.length)throw new Error('Empty array');
+    aiGeneratedQs=[...aiGeneratedQs,...questions];
+    ST.aiQsLoaded=true;
+    ST.used=[];
+    checkBadges();
+    status.textContent='+'+questions.length+' questions added!';
+    setTimeout(()=>status.textContent='',3000);
+    listEl.innerHTML=questions.map((q,i)=>renderAIQCard(q,i)).join('');
+  } catch(err){
+    status.textContent='';
+    listEl.innerHTML=`<div class="err-card">
+      <div class="err-txt">Could not generate questions</div>
+      <div class="err-sub">${err.message||'Network error'}. The AI question generator requires an active internet connection.</div>
+      <button class="btn btn-p" onclick="generateAIQuestions(${count})">Try Again</button>
+    </div>`;
+  }
+}
+
+function renderAIQCard(q,i){
+  const bt={mcq:'bm',fib:'bf',short:'bs',long:'bl',eq:'be'};
+  const bl={mcq:'MCQ',fib:'Fill Blank',short:'Short',long:'Long',eq:'Equation'};
+  const opts=q.opts||q.options||[];
+  let preview='';
+  if(q.type==='mcq')preview=`<div style="font-size:12px;color:var(--mut);margin-top:6px">${opts.map((o,j)=>`<span style="margin-right:10px;${j===q.ans?'color:var(--s);font-weight:800':''}">${String.fromCharCode(65+j)}. ${o}</span>`).join('')}</div>`;
+  else if(q.type==='fib')preview=`<div style="font-size:12px;color:var(--mut);margin-top:5px">Answer: <strong style="color:var(--s)">${q.ans||q.answer}</strong></div>`;
+  else if(q.type==='eq')preview=`<div style="font-size:12px;color:var(--mut);margin-top:5px">Equation: <strong style="color:var(--p)">${q.eq||q.equation}</strong> → ${q.var||q.variable} = <strong style="color:var(--s)">${q.ans||q.answer}</strong></div>`;
+  else if(q.type==='short')preview=`<div style="font-size:12px;color:var(--mut);margin-top:5px">Answer: <strong style="color:var(--s)">${q.ans||q.answer}</strong></div>`;
+  else if(q.type==='long')preview=`<div style="font-size:12px;color:var(--mut);margin-top:5px;line-height:1.5">Model: ${(q.modelAns||q.model_ans||'').substring(0,80)}${(q.modelAns||'').length>80?'...':''}</div>`;
+  return `<div class="q-card" style="margin-bottom:9px">
+    <div style="display:flex;align-items:center;gap:7px;margin-bottom:8px">
+      <span class="qbadge ${bt[q.type]||'bm'}">${bl[q.type]||q.type}</span>
+      <span class="ai-tag">AI</span>
+      <span style="font-size:11px;color:var(--mut);font-weight:700;margin-left:auto">Q${i+1}</span>
+    </div>
+    <div style="font-size:14px;font-weight:700;color:var(--txt);line-height:1.5">${q.text||q.pre||q.eq||q.question||''}</div>
+    ${preview}
+    ${q.hint?`<div class="hint" style="margin-top:7px">Hint: ${q.hint}</div>`:''}
+  </div>`;
+}
+
+function renderProgress(){
+  document.getElementById('p-att').textContent=ST.att;
+  document.getElementById('p-cor').textContent=ST.cor;
+  document.getElementById('p-best').textContent=ST.best;
+  const br=document.getElementById('badge-row');
+  br.innerHTML=BADGES_DEF.map(b=>`<div class="bdg${ST.badges.includes(b.id)?' earned':''}">${ST.badges.includes(b.id)?'★ ':''} ${b.label}</div>`).join('');
+  const lb=document.getElementById('lb-list');
+  const data=[{n:'You',s:ST.pts},{n:'Aarav',s:380},{n:'Priya',s:320},{n:'Rohan',s:270},{n:'Ananya',s:190}].sort((a,b)=>b.s-a.s);
+  const rk=['g','s','b'];
+  lb.innerHTML=data.map((r,i)=>`<div class="lb-row"><div class="lb-rk ${rk[i]||''}">${i+1}</div><div class="lb-nm">${r.n}${r.n==='You'?' (You)':''}</div><div class="lb-sc">${r.s} pts</div></div>`).join('');
+}
+
+function renderTopics(){
+  const all=getAllQs();
+  const tl=document.getElementById('topics-list');
+  tl.innerHTML=TOPICS_DEF.map(t=>{
+    const total=all.filter(q=>q.topic===t.id).length;
+    const done=all.filter((q,i)=>q.topic===t.id&&ST.used.includes(all.indexOf(q))).length;
+    const ai=aiGeneratedQs.filter(q=>q.topic===t.id).length;
+    const pct=total?Math.round(done/total*100):0;
+    return `<div class="topic-prog">
+      <div class="tp-row"><div><div class="tp-nm">${t.label}</div><div style="font-size:11px;color:var(--mut)">${t.ch}${ai>0?` • +${ai} AI questions`:''}</div></div><div class="tp-ct">${done}/${total}</div></div>
+      <div class="tp-bar"><div class="tp-fill" style="width:${pct}%"></div></div>
+    </div>`;
+  }).join('');
+}
+
+function initChips(){
+  const wrap=document.getElementById('topic-chips');
+  const all=[{id:'all',label:'All Topics'},...TOPICS_DEF];
+  wrap.innerHTML=all.map(t=>`<div class="chip${t.id==='all'?' on':''}" onclick="selTopic('${t.id}')">${t.label}</div>`).join('');
+}
+
+function selTopic(id){
+  ST.topic=id;ST.used=[];
+  document.querySelectorAll('.chip').forEach(c=>{
+    const match=c.textContent.trim()===(id==='all'?'All Topics':(TOPICS_DEF.find(t=>t.id===id)?.label||id));
+    c.classList.toggle('on',match);
+  });
+  nextQ();
+}
+
+initChips();
+updateUI();
+nextQ();
+</script>
